@@ -22,6 +22,8 @@ jobs:
       - name: Diffset
         id: diffset
         uses: softprops/diffset@v1
+        with: 
+          base: fix_gha
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: ls -al ${{ steps.diffset.outputs.files }}
