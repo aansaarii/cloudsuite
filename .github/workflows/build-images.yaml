@@ -27,7 +27,7 @@ jobs:
         id: diffset
         uses: softprops/diffset@v1
         with: 
-          base: ${{env.DIFF_POINT}}
+          #base: ${{env.DIFF_POINT}}
           target_files: ./commons/${{ github.job }}/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
