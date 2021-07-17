@@ -28,9 +28,8 @@ jobs:
         uses: softprops/diffset@v1
         with: 
           base: ${{env.DIFF_POINT}}
-          target_files: |
-            ./commons/${{ github.job }}/*
         env:
+          INPUT_TARGET_FILES: './commons/${{ github.job }}/*'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: ls -al ${{ steps.diffset.outputs.target_files }}
       - name: setup docker buildx
