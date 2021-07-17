@@ -38,7 +38,7 @@ jobs:
         run: echo "diff point1 is ${{steps.set_var_on_push.outputs.DIFF_POINT}}"
       - name: set variables on PR
         if: ${{ !steps.set_var_on_push.outputs.DIFF_POINT }}
-        run: '::set-output name=DIFF_POINT::$GITHUB_BASE_REF'
+        run: '::set-output name=DIFF_POINT::${GITHUB_BASE_REF}'
       - name: test dif point2
         run: echo "diff point2 is ${{steps.set_var_on_push.outputs.DIFF_POINT}}"
       - name: Login to Docker Hub
