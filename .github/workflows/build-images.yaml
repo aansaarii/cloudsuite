@@ -38,7 +38,7 @@ jobs:
         run: echo '::set-env name=DIFF_POINT::${GITHUB_REF#refs/heads/}'
         #run: echo '::set-output name=DIFF_POINT::${GITHUB_REF#refs/heads/}'
       - name: set var on pr
-        if: ${GITHUB_BASE_REF != ''}
+        if: ${{GITHUB_BASE_REF != ''}}
         run: echo '::set-env name=DIFF_POINT::${GITHUB_BASE_REF}'
       - name: test diff point value
         run: echo "final diff point is ${DIFF_POINT}"
