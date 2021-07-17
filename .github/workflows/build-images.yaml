@@ -31,7 +31,7 @@ jobs:
         env:
           INPUT_TARGET_FILES: './commons/${{ github.job }}/*'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: ls -al ${OUTPUT_TARGET_FILES}
+      - run: ls -al ${steps.diffset.outputs.files}
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
         
