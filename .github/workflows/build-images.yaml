@@ -29,7 +29,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: echo "GITHUB_REF ${{ github.ref }}" \
           && echo "GITHUB_BASEREF ${{ github.base_ref }}" \
-          && echo "GITHUB_HEADREF ${{ github.head_ref }}"     
+          && echo "GITHUB_HEADREF ${{ github.head_ref }}"   
+      - name: set variables on push
+        id: set_var_on_push
+        if: ${{ github.ref == "refs/heads/master || github.ref == "refs/heads/dev" }}
+        run: echo '::set-output name=DIFF_POINT::${GITHUB_REF#refs/heads/}'
+      - name: test dif point1
+        run: echo "diff point1 is ${steps.set_var_on_push.outputs.DIFF_POINT}"
+      - name: set variables on PR
+        if: ${{ steps.set_var_on_push.outputs.DIFF_POINT }}
+        run: '::set-output name=DIFF_POINT::${github.base_ref}'
+      - name: test dif point2
+        run: echo "diff point2 is ${steps.set_var_on_push.outputs.DIFF_POINT}"
       - name: Login to Docker Hub
         uses: docker/login-action@v1
         with:
@@ -40,7 +51,7 @@ jobs:
         uses: docker/setup-buildx-action@v1
         
       - name: build and push
-        if: ${{ steps.diffset.outputs.target_files }}
+        if: ${{ steps.diffset.outputs.target_files }} or 
         uses: docker/build-push-action@v2
         with:
           context: ./commons/${{ github.job }}
