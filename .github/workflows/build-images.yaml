@@ -32,7 +32,7 @@ jobs:
           && echo "GITHUB_HEADREF ${{ github.head_ref }}"   
       - name: set variables on push
         id: set_var_on_push
-        if: ${{ github.ref == "refs/heads/master || github.ref == "refs/heads/dev" }}
+        if: ${{ github.ref == "refs/heads/master" || github.ref == "refs/heads/dev" }}
         run: echo '::set-output name=DIFF_POINT::${GITHUB_REF#refs/heads/}'
       - name: test dif point1
         run: echo "diff point1 is ${steps.set_var_on_push.outputs.DIFF_POINT}"
