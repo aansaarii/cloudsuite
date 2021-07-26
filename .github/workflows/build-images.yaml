@@ -22,6 +22,7 @@ jobs:
     env:
       DH_REPO: "cloudsuitetest/debian"
       DF_PATH: "./commons/base-os"
+      CHANGED: "false"
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -31,6 +32,8 @@ jobs:
         uses: docker/setup-buildx-action@v1
       - name: build and push
         run: "./.github/scripts/build-images.sh"
+      - run: echo ${{env.CHANGED}}
+      - run: echo ${CHANGED}
   
   java:
     runs-on: ubuntu-latest
