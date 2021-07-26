@@ -61,8 +61,7 @@ jobs:
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
       - if: ${{ needs.base-os.outputs.is_parent_modified == 'true' }}
-        env:
-          IS_PARENT_MODIFIED: "true"      
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
