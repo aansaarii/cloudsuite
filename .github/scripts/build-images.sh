@@ -74,9 +74,9 @@ else
     echo "No Modifications to this image"
 fi
 
-if [ $MODIFIED = "true" ]; then
+if [ "${MODIFIED}" = "true" ]; then
   echo "::set-output name=is_parent_modified::true"
-elif [ $MODIFIED = "false" ]; then
+elif [ "${MODIFIED}" = "false" ]; then
   echo "::set-output name=is_parent_modified::false"
 else
   exit 1
