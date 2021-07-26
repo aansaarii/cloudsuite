@@ -36,12 +36,17 @@ jobs:
         id: build_and_push
         run: "./.github/scripts/build-images.sh"
       - run: echo ${MODIFIED}
-      - run: echo "::set-output name=is_parent_modified::${MODIFIED}"
       - run: echo ${{ steps.build_and_push.outputs.is_parent_modified }}
-      - run: echo "::set-output name=is_parent_modified::${{env.MODIFIED}}"
-      - run: echo ${{ steps.build_and_push.outputs.is_parent_modified }}
-      - run: echo "::set-output name=is_parent_modified::green"
-      - run: echo ${{ steps.build_and_push.outputs.is_parent_modified }}
+      - id: test1
+        run: echo "::set-output name=is_parent_modified::${MODIFIED}"
+      - run: echo ${{ steps.test1.outputs.is_parent_modified }}
+      - id: test2
+        run: echo "::set-output name=is_parent_modified::${{env.MODIFIED}}"
+      - run: echo ${{ steps.test2.outputs.is_parent_modified }}
+      - id: test3
+        run: echo "::set-output name=is_parent_modified::green"
+      - run: echo ${{ steps.test3.outputs.is_parent_modified }}
+      
   
   java:
     runs-on: ubuntu-latest
