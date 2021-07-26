@@ -28,6 +28,8 @@ if (grep -q "${DF_PATH#./}" <<<$modified_files) || # Rebuild the image if any fi
     docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
     docker buildx create --name multiarch --driver docker-container --use
     docker buildx inspect --bootstrap
+    
+    CHANGED=true
 
     if [ $image_name = "debian" ]; then
         cd commons/base-os
