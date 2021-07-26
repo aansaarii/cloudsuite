@@ -74,4 +74,4 @@ else
     echo "No Modifications to this image"
 fi
 
-echo "::set-output name=is_parent_modified::${MODIFIED}"
+#echo "::set-output name=is_parent_modified::${MODIFIED}"
