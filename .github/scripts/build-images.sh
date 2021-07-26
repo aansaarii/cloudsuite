@@ -74,4 +74,10 @@ else
     echo "No Modifications to this image"
 fi
 
-echo "::set-output name=is_parent_modified::test"
+if ( $MODIFIED = 'true'); then
+  echo "::set-output name=is_parent_modified::true"
+elif ( $MODIFIED = 'false'); then
+  echo "::set-output name=is_parent_modified::false"
+else
+  exit 1
+fi
