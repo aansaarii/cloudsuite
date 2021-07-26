@@ -76,8 +76,10 @@ fi
 
 if [ "${MODIFIED}" = "true" ]; then
   echo "::set-output name=is_parent_modified::true"
+  echo true!!
 elif [ "${MODIFIED}" = "false" ]; then
   echo "::set-output name=is_parent_modified::false"
+  echo false!!
 else
   exit 1
 fi
