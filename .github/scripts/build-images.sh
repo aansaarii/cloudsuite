@@ -30,7 +30,7 @@ fi
 if (grep -q "${DF_PATH#./}" <<<$modified_files) || # Rebuild the image if any file in the build folder is changed 
     (grep -q "build-images.sh" <<<$modified_files) ||
     (grep -q "build-images.yaml" <<<$modified_files) ||
-    ("${IS_PARENT_MODIFIED}" = "true"); then
+    [ "${IS_PARENT_MODIFIED}" = "true" ]; then
     # if modified, then rebuild their docker image
     docker buildx prune -a -f
     # reference: https://github.com/docker/buildx/issues/495
