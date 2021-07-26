@@ -22,7 +22,9 @@ jobs:
     env:
       DH_REPO: "cloudsuitetest/debian"
       DF_PATH: "./commons/base-os"
-      CHANGED: "false"
+      MODIFIED: "false"
+    outputs:
+      is_parent_modified: ${{ steps.build_and_push.outputs.is_parent_modified }}
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -31,6 +33,7 @@ jobs:
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
       - name: build and push
+        id: build_and_push
         run: "./.github/scripts/build-images.sh"
   
   java:
@@ -38,6 +41,7 @@ jobs:
     needs: base-os
     env:
       DH_REPO: "cloudsuitetest/${{ github.job }}"
+      MODIFIED: "false"
     strategy:
       matrix:
         include:
