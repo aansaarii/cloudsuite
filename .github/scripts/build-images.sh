@@ -73,16 +73,3 @@ if (grep -q "${DF_PATH#./}" <<<$modified_files) || # Rebuild the image if any fi
 else
     echo "No Modifications to this image"
 fi
-
-echo "${MODIFIED}" 
-echo $MODIFIED
-
-if [ "${MODIFIED}" = "true" ]; then
-  echo "::set-output name=is_parent_modified::true"
-  echo true!!
-elif [ "${MODIFIED}" = "false" ]; then
-  echo "::set-output name=is_parent_modified::false"
-  echo false!!
-else
-  exit 1
-fi
