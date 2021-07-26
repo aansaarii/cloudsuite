@@ -91,6 +91,8 @@ jobs:
           fetch-depth: 0
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
+      - if: ${{ needs.base-os.outputs.is_parent_modified == 'true' }}
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
@@ -119,6 +121,8 @@ jobs:
           fetch-depth: 0
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
+      - if: ${{ needs.base-os.outputs.is_parent_modified == 'true' }}
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
@@ -147,6 +151,8 @@ jobs:
           fetch-depth: 0
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
+      - if: ${{ needs.base-os.outputs.is_parent_modified == 'true' }}
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
@@ -175,6 +181,8 @@ jobs:
           fetch-depth: 0
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
+      - if: ${{ needs.base-os.outputs.is_parent_modified == 'true' }}
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
@@ -203,6 +211,8 @@ jobs:
           fetch-depth: 0
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
+      - if: ${{ needs.java.outputs.is_parent_modified == 'true' }}
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
@@ -231,6 +241,8 @@ jobs:
           fetch-depth: 0
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
+      - if: ${{ needs.java.outputs.is_parent_modified == 'true' }}
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
@@ -259,6 +271,8 @@ jobs:
           fetch-depth: 0
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
+      - if: ${{ needs.java.outputs.is_parent_modified == 'true' }}
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
@@ -287,6 +301,8 @@ jobs:
           fetch-depth: 0
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
+      - if: ${{ needs.java.outputs.is_parent_modified == 'true' }}
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
@@ -315,6 +331,8 @@ jobs:
           fetch-depth: 0
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
+      - if: ${{ needs.java.outputs.is_parent_modified == 'true' }}
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
@@ -340,6 +358,8 @@ jobs:
           fetch-depth: 0
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
+      - if: ${{ needs.hadoop.outputs.is_parent_modified == 'true' }}
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
@@ -366,6 +386,8 @@ jobs:
           fetch-depth: 0
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
+      - if: ${{ needs.memcached.outputs.is_parent_modified == 'true' }}
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
@@ -389,6 +411,8 @@ jobs:
           fetch-depth: 0
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
+      - if: ${{ needs.cassandra.outputs.is_parent_modified == 'true' }}
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
@@ -415,6 +439,12 @@ jobs:
           fetch-depth: 0
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
+      - if: |
+          ${{ needs.cassandra.outputs.is_parent_modified == 'true' || 
+          needs.graphite-statsd.outputs.is_parent_modified == 'true' ||
+          needs.memcached.outputs.is_parent_modified == 'true' ||
+          needs.siege.outputs.is_parent_modified == 'true' }}
+        run: echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
       - name: build and push
         run: "./.github/scripts/build-images.sh"
         env:
