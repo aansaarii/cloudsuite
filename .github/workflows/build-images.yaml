@@ -38,6 +38,10 @@ jobs:
       - run: echo ${MODIFIED}
       - run: echo "::set-output name=is_parent_modified::${MODIFIED}"
       - run: echo ${{ steps.build_and_push.outputs.is_parent_modified }}
+      - run: echo "::set-output name=is_parent_modified::${{env.MODIFIED}}"
+      - run: echo ${{ steps.build_and_push.outputs.is_parent_modified }}
+      - run: echo "::set-output name=is_parent_modified::green"
+      - run: echo ${{ steps.build_and_push.outputs.is_parent_modified }}
   
   java:
     runs-on: ubuntu-latest
