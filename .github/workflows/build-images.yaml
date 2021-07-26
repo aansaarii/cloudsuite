@@ -54,11 +54,11 @@ jobs:
         uses: docker/setup-buildx-action@v1
       - if: ${{ needs.base-os.outputs.CHANGED }}
         run: echo true
-      - if: ${{ needs.base-os.outputs.CHANGED == "true" }}
+      - if: ${{ needs.base-os.outputs.CHANGED == 'true' }}
         run: echo true
       - if: ${{ !needs.base-os.outputs.CHANGED }}
         run: echo false
-      - if: ${{ needs.base-os.outputs.CHANGED == "false" }}
+      - if: ${{ needs.base-os.outputs.CHANGED == 'false' }}
         run: echo false
       - name: build and push
         
