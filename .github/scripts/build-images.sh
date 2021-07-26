@@ -18,10 +18,19 @@ if [ -z "$modified_files" ]; then
 else
     echo "Checking against modified files"
 fi
+if ("${IS_PARENT_MODIFIED}" = "true"); then
+  echo parent is modified
+else if ("${IS_PARENT_MODIFIED}" = "false"); then
+  echo parent is the same
+else 
+  exit 1
+fi
+
 # 3.Find out whether the files related with the current build were modified or not
 if (grep -q "${DF_PATH#./}" <<<$modified_files) || # Rebuild the image if any file in the build folder is changed 
     (grep -q "build-images.sh" <<<$modified_files) ||
-    (grep -q "build-images.yaml" <<<$modified_files); then
+    (grep -q "build-images.yaml" <<<$modified_files) ||
+    ("${IS_PARENT_MODIFIED}" = "true"); then
     # if modified, then rebuild their docker image
     docker buildx prune -a -f
     # reference: https://github.com/docker/buildx/issues/495
