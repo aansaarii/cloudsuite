@@ -36,6 +36,7 @@ jobs:
         id: build_and_push
         run: "./.github/scripts/build-images.sh"
       - run: echo ${MODIFIED}
+      - run: echo "::set-output name=is_parent_modified::${MODIFIED}"
       - run: echo ${{ steps.build_and_push.outputs.is_parent_modified }}
   
   java:
