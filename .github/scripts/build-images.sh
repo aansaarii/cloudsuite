@@ -18,9 +18,9 @@ if [ -z "$modified_files" ]; then
 else
     echo "Checking against modified files"
 fi
-if ("${IS_PARENT_MODIFIED}" = "true"); then
+if [ "${IS_PARENT_MODIFIED}" = "true" ]; then
   echo parent is modified
-elif ("${IS_PARENT_MODIFIED}" = "false"); then
+elif [ "${IS_PARENT_MODIFIED}" = "false" ]; then
   echo parent is the same
 else 
   exit 1
