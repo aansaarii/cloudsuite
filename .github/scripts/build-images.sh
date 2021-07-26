@@ -29,7 +29,7 @@ if (grep -q "${DF_PATH#./}" <<<$modified_files) || # Rebuild the image if any fi
     docker buildx create --name multiarch --driver docker-container --use
     docker buildx inspect --bootstrap
     
-    echo "CHANGED=true" >> $GITHUB_ENV
+    echo "MODIFIED=true" >> $GITHUB_ENV
 
     if [ $image_name = "debian" ]; then
         cd commons/base-os
@@ -74,4 +74,4 @@ else
     echo "No Modifications to this image"
 fi
 
-echo "::set-output name=is_parent_modified::${CHANGED}"
+echo "::set-output name=is_parent_modified::${MODIFIED}"
