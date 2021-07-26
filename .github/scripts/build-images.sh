@@ -74,6 +74,9 @@ else
     echo "No Modifications to this image"
 fi
 
+echo "${MODIFIED}" 
+echo $MODIFIED
+
 if [ "${MODIFIED}" = "true" ]; then
   echo "::set-output name=is_parent_modified::true"
   echo true!!
