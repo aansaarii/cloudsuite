@@ -20,7 +20,7 @@ else
 fi
 if ("${IS_PARENT_MODIFIED}" = "true"); then
   echo parent is modified
-else if ("${IS_PARENT_MODIFIED}" = "false"); then
+elif ("${IS_PARENT_MODIFIED}" = "false"); then
   echo parent is the same
 else 
   exit 1
