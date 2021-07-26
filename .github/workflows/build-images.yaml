@@ -23,6 +23,7 @@ jobs:
       DH_REPO: "cloudsuitetest/debian"
       DF_PATH: "./commons/base-os"
       MODIFIED: "false"
+      IS_PARENT_MODIFIED: "false"
     outputs:
       is_parent_modified: ${{ steps.set_is_parent_modified.outputs.is_parent_modified }}
     steps:
