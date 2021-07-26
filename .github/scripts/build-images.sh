@@ -26,6 +26,13 @@ else
   exit 1
 fi
 
+if [ "${{ needs.base-os.outputs.is_parent_modified }}" = 'true' }} ]; then
+  echo "IS_PARENT_MODIFIED=true" >> $GITHUB_ENV
+  echo setting is_parent_modified
+fi
+
+echo ${IS_PARENT_MODIFIED}
+
 # 3.Find out whether the files related with the current build were modified or not
 if (grep -q "${DF_PATH#./}" <<<$modified_files) || # Rebuild the image if any file in the build folder is changed 
     (grep -q "build-images.sh" <<<$modified_files) ||
