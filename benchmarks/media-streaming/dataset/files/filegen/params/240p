@@ -1,4 +1,4 @@
-library_size=10
+library_size=9
 num_log_files=1
-num_log_sessions=5
+num_log_sessions=1000
 video_quality=240p
